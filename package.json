@@ -1,0 +1,44 @@
+{
+  "name": "my-datav-components",
+  "version": "1.0.0",
+  "description": "可视化数据组件库",
+  "main": "dist/bundle.Umd.js",
+  "scripts": {
+    "text": "babel-node ./src/index.js",
+    "dev": "rollup -wc ./rollup.config.dev.js",
+    "build:dev": "eslint ./src && rollup -c ./rollup.config.dev.js",
+    "build:prod": "eslint ./src && rollup -c ./rollup.config.prod.js",
+    "lint": "eslint ./src"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "keywords": [
+    "关键字",
+    "vue有关",
+    "imooc有关",
+    "数据可视化"
+  ],
+  "author": "李俊俊<11776174@qq.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.11.1",
+    "@babel/preset-env": "^7.11.0",
+    "@vue/compiler-sfc": "^3.0.0-rc.5",
+    "eslint": "^7.7.0",
+    "eslint-plugin-vue": "^6.2.2",
+    "rollup": "^2.26.0",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-json": "^4.0.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-postcss": "^3.1.5",
+    "rollup-plugin-terser": "^7.0.0",
+    "rollup-plugin-vue": "^6.0.0-beta.10",
+    "sass": "^1.26.10"
+  },
+  "dependencies": {
+    "vue": "^3.0.0-0"
+  }
+}
