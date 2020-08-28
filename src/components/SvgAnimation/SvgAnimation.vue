@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="svg-animation">
     <div class="container">
       <svg height="200"
            viewBox="0 0 500 200"
@@ -46,7 +46,7 @@
         />
       </svg>
     </div>
-    <!--环形方形-->
+    环形方形
     <div class="container">
       <svg height="200"
            viewBox="0 0 200 200"
@@ -69,7 +69,7 @@
               y="0"></rect>
       </svg>
     </div>
-    <!--logo描边动画-->
+    logo描边动画
     <div class="container">
       <svg
           height="200"
@@ -85,7 +85,7 @@
               p-id="2965"></path>
       </svg>
     </div>
-    <!--SMIL动画-->
+    SMIL动画
     <div class="container">
       <svg height="400"
            width="400">
@@ -117,7 +117,7 @@
         </rect>
       </svg>
     </div>
-    <!--补间动画 小球滚动-->
+    补间动画 小球滚动
     <div class="container">
       <svg height="200"
            viewBox="0 0 500 200"
@@ -147,7 +147,7 @@
         </circle>
       </svg>
     </div>
-    <!--形状补间动画-->
+    形状补间动画
     <div class="container">
       <svg height="400"
            width="400">
@@ -185,7 +185,7 @@
         </rect>
       </svg>
     </div>
-    <!--轨迹动画-->
+    轨迹动画
     <div class="container">
       <svg height="200"
            width="200">
@@ -212,9 +212,7 @@
               stroke="green"></path>
       </svg>
     </div>
-    <!--
-      轨迹动画, 做一个不闭合的 原路返回的动画
-    -->
+    轨迹动画, 做一个不闭合的 原路返回的动画
     <div class="container">
       <svg height="200"
            width="200">
@@ -257,6 +255,68 @@
               stroke="green"></path>
       </svg>
     </div>
+    mask 蒙版的概念详解 蒙版的基本使用
+    <div class="container">
+      <svg height="400"
+           width="400">
+        <mask id="test-mask">
+          <rect fill="yellow"
+                height="50"
+                width="50"
+                x="10"
+                y="10"/>
+        </mask>
+        <!--线性渐变-->
+        <linearGradient id="test-linear-gradient">
+          <stop offset="0%"
+                stop-color="red"
+                stop-opacity="1"/>
+          <stop offset="50%"
+                stop-color="green"/>
+          <stop offset="100%"
+                stop-color="blue"
+                stop-opacity="0"/>
+        </linearGradient>
+        <!--圆形渐变-->
+        <!--
+          表示内圈的范围
+          fx=""
+          fy=""
+          表示外圈的范围
+          cx=""
+          cy=""
+          r 表示辐射半径
+        -->
+        <radialGradient cx="30%"
+                        cy="50%"
+                        fx="25%"
+                        fy="75%"
+                        id="test-radial-gradient"
+                        r="50%">
+          <stop offset="0%"
+                stop-color="white"/>
+          <stop offset="10%"
+                stop-color="yellow"/>
+          <stop offset="95%"
+                stop-color="red" stop-opacity="1.5"/>
+        </radialGradient>
+        <!--        <rect fill="url(#test-radial-gradient)"-->
+        <!--              height="390"-->
+        <!--              width="390"-->
+        <!--              x="5"-->
+        <!--              y="5"/>-->
+        <circle cx="200"
+                cy="200"
+                fill="url(#test-radial-gradient)"
+                r="150"/>
+        <!--        <rect fill="blue"-->
+        <!--              height="390"-->
+        <!--              mask="url(#test-mask)"-->
+        <!--              width="390"-->
+        <!--              x="5"-->
+        <!--              y="5"/>-->
+      </svg>
+    </div>
   </div>
 </template>
 
@@ -276,6 +336,10 @@ export default {
 
 <style lang="scss"
        scoped>
+.svg-animation {
+  font-size: 20px;
+  font-weight: 700;
+}
 .container {
   svg {
     border: 1px solid #000;
