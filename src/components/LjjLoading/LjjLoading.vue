@@ -104,5 +104,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.ljj-loading{
 
+}
 </style>

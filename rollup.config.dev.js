@@ -40,7 +40,14 @@ module.exports = {
     NodeResolve(),
     Commonjs(),
     Babel({
-      exclude: 'node_modules/**' //排除不编译的文件
+      exclude: 'node_modules/**', //排除不编译的文件
+      runtimeHelpers: true,
+      // 使其支持async函数
+      plugins: [
+        ['@babel/transform-runtime', {
+          regenerator: true
+        }]
+      ]
     }),
     Json(),
     Vue(),
