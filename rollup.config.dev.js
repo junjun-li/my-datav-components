@@ -56,6 +56,6 @@ module.exports = {
     })
   ],
   // vue的代码不会打包进去 即使使用了 rollup-plugin-node-resolve 这个插件
-  external: ['vue']
+  external: ['vue', 'echarts']
 }
 // cnpm i -g @babel/node

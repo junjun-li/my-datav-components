@@ -12,5 +12,6 @@ module.exports = {
         "vue"
     ],
     "rules": {
+      'custom-event-name-casing': 'off'
     }
 };

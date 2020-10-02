@@ -259,24 +259,24 @@
     <div class="container">
       <svg height="400"
            width="400">
-        <mask id="test-mask">
-          <rect fill="yellow"
-                height="50"
-                width="50"
-                x="10"
-                y="10"/>
-        </mask>
+<!--        <mask id="test-mask">-->
+<!--          <rect fill="yellow"-->
+<!--                height="50"-->
+<!--                width="50"-->
+<!--                x="10"-->
+<!--                y="10"/>-->
+<!--        </mask>-->
         <!--线性渐变-->
-        <linearGradient id="test-linear-gradient">
-          <stop offset="0%"
-                stop-color="red"
-                stop-opacity="1"/>
-          <stop offset="50%"
-                stop-color="green"/>
-          <stop offset="100%"
-                stop-color="blue"
-                stop-opacity="0"/>
-        </linearGradient>
+        <!--        <linearGradient id="test-linear-gradient">-->
+        <!--          <stop offset="0%"-->
+        <!--                stop-color="red"-->
+        <!--                stop-opacity="1"/>-->
+        <!--          <stop offset="50%"-->
+        <!--                stop-color="green"/>-->
+        <!--          <stop offset="100%"-->
+        <!--                stop-color="blue"-->
+        <!--                stop-opacity="0"/>-->
+        <!--        </linearGradient>-->
         <!--圆形渐变-->
         <!--
           表示内圈的范围
@@ -298,13 +298,14 @@
           <stop offset="10%"
                 stop-color="yellow"/>
           <stop offset="95%"
-                stop-color="red" stop-opacity="1.5"/>
+                stop-color="red"
+                stop-opacity="1.5"/>
         </radialGradient>
-        <!--        <rect fill="url(#test-radial-gradient)"-->
-        <!--              height="390"-->
-        <!--              width="390"-->
-        <!--              x="5"-->
-        <!--              y="5"/>-->
+<!--        <rect fill="url(#test-radial-gradient)"-->
+<!--              height="390"-->
+<!--              width="390"-->
+<!--              x="5"-->
+<!--              y="5"/>-->
         <circle cx="200"
                 cy="200"
                 fill="url(#test-radial-gradient)"
@@ -315,6 +316,24 @@
         <!--              width="390"-->
         <!--              x="5"-->
         <!--              y="5"/>-->
+      </svg>
+    </div>
+    <div class="container">
+      <svg width="500" height="500">
+        <radialGradient id="radialGradientId"
+                        cx="50%"
+                        cy="50%"
+                        fx="100%"
+                        fy="50%"
+                        r="50%">
+          <stop offset="0%"
+                stop-color="#235fa7"
+                stop-opacity="1"></stop>
+          <stop offset="100%"
+                stop-color="#235fa7"
+                stop-opacity="0"></stop>
+        </radialGradient>
+        <circle r="50" cx="300" cy="300" stroke="#235fa7" stroke-width="10" fill="url(#radialGradientId)"/>
       </svg>
     </div>
   </div>
@@ -339,6 +358,7 @@ export default {
 .svg-animation {
   font-size: 20px;
   font-weight: 700;
+  display: flex;flex-wrap: wrap;
 }
 .container {
   svg {
