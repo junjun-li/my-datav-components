@@ -23,7 +23,7 @@
             height: `${height - actualConfig.headerHeight}px`
           }"
          class="base-scroll-list-wrapper">
-      <div v-for="(rowItem,index) in rowsData"
+      <div v-for="(rowItem,index) in currentRowData"
            :key="rowItem"
            :style="{
              height: `${rowHeights[index]}px`,
@@ -90,7 +90,7 @@ const defaultConfig = {
   // 动画执行的间隔
   duration: 1000,
   // 每一次动画移动的位置 1格,2格
-  moveNum: 1
+  moveNum: 2
 }
 
 export default {
@@ -120,8 +120,8 @@ export default {
     // 每一页的条数
     const rowNum = ref(0)
     // 真正展示的数据
-    const currentData = ref([])
-    // 当前动画的指针
+    const currentRowData = ref([])
+    // 当前动画的指针 指当前动画到了哪一个元素
     const currentIndex = ref(0)
     let avgHeight
     const handleHeader = (config) => {
@@ -196,6 +196,40 @@ export default {
         rowBg.value = config.rowBg
       }
     }
+
+    const startAnimation = async () => {
+      const config = actualConfig.value
+      const { rowNum, moveNum, duration,  } = config
+      const totalLength = rowsData.value.length
+      // 如果数据条数小于需要显示的总条数 就不执行动画了
+      if (totalLength < rowNum) return
+
+      const index = currentIndex.value
+      const _rowData = cloneDeep(rowsData.value)
+      // 将数据进行收尾相连,
+      // 如果数据是这样的 [1,2,3,4,5,6,7,8,9]
+      // 隔一段时间 变成 [2,3,4,5,6,7,8,9,1]
+      // 然后变成 [3,4,5,6,7,8,9,1,2]
+      // debugger
+      // 1. 先把index之后的数据取到
+      const rows = _rowData.slice(index)
+      // 2. 再往里面push index之前的数据
+      rows.push(..._rowData.slice(0, index))
+      currentRowData.value = rows
+      // currentIndex ++
+      currentIndex.value += moveNum
+      // 判断是否到达最后一个元素
+      // 因为moveNum不一定为1,所以重置的时候,不能把currentIndex直接赋值为0
+      // 1 = 6 - 5 所以当前动画指针应该为1
+      // debugger
+      const isLast = currentIndex.value - totalLength
+      if (isLast >= 0) {
+        currentIndex.value = isLast
+      }
+      // 使用promise的方式 限制该回调的调用
+      await new Promise(((resolve, reject) => setTimeout(resolve, duration)))
+      await startAnimation()
+    }
     onMounted(() => {
       const _actualConfig = assign(defaultConfig, props.config)
       // 如果开启了headerIndex, 就要提前赋值, 因为之后 要往这里面push一个新值
@@ -204,7 +238,7 @@ export default {
       handleHeader(_actualConfig)
       handleRows(_actualConfig)
       actualConfig.value = _actualConfig
-      // startAnimation()
+      startAnimation()
     })
     return {
       id,
@@ -217,7 +251,7 @@ export default {
       rowBg,
       aligns,
       actualConfig,
-      currentData,
+      currentRowData,
       height
     }
   }
