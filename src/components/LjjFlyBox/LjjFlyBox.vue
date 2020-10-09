@@ -93,6 +93,7 @@ export default {
       type: String,
       default: '#235fa7'
     },
+
     // 流星的颜色
     starColor: {
       type: String,
@@ -119,6 +120,7 @@ export default {
     onMounted(() => {
       // 因为setup在vue实例之前调用, 获取不到运行时的dom
       // vue提供了一个 getCurrentInstance的方法来获取ref的值
+      console.log(ctx.starColor)
       const instance = getCurrentInstance()
       const dom = instance.ctx.$refs['ljjFlyBox']
       height.value = dom.clientHeight
